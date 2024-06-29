@@ -9,11 +9,11 @@ class BaseModel:
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
         if not kwargs:
-            from models import storage
+            from engine.file_storage import FileStorage
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
+            FileStorage.new(self)
         else:
             kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
                                                      '%Y-%m-%dT%H:%M:%S.%f')
@@ -29,9 +29,9 @@ class BaseModel:
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
-        from models import storage
+        from engine.file_storage import FileStorage
         self.updated_at = datetime.now()
-        storage.save()
+        FileStorage.save()
 
     def to_dict(self):
         """Convert instance into dict format"""
