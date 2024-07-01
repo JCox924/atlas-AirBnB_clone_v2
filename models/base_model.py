@@ -38,18 +38,18 @@ class BaseModel:
 
     def save(self):
         """Updates updated_at with current time when instance is changed"""
-        from engine.file_storage import FileStorage
         self.updated_at = datetime.now()
-        FileStorage.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """Convert instance into dict format"""
-        dictionary = {}
-        dictionary.update(self.__dict__)
-        dictionary.update({'__class__':
-                          (str(type(self)).split('.')[-1]).split('\'')[0]})
-        dictionary['created_at'] = self.created_at.isoformat()
-        dictionary['updated_at'] = self.updated_at.isoformat()
+        dictionary = self.__dict__.copy()
+        dictionary["__class__"] = self.__class__.__name__
+        dictionary["created_at"] = self.created_at.isoformat()
+        dictionary["updated_at"] = self.updated_at.isoformat()
+        if "_sa_instance_state" in dictionary:
+            del dictionary["_sa_instance_state"]
         return dictionary
 
     def delete(self):
