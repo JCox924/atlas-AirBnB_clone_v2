@@ -3,6 +3,7 @@
 import unittest
 from models.base_model import BaseModel
 from models import storage
+from models.state import State
 import os
 
 
@@ -107,3 +108,24 @@ class test_fileStorage(unittest.TestCase):
         from models.engine.file_storage import FileStorage
         print(type(storage))
         self.assertEqual(type(storage), FileStorage)
+
+    def test_delete_existing_object(self):
+        """Test that delete removes the object from __objects"""
+        state = State()
+        storage.new(state)
+        self.assertIn("State." + state.id, storage.all())
+        storage.delete(state)
+        self.assertNotIn("State." + state.id, storage.all())
+
+    def test_delete_non_existing_object(self):
+        """Test that delete does nothing if the object is not in __objects"""
+        state = State()
+        initial_count = len(storage.all())
+        storage.delete(state)  # Try to delete an object not in __objects
+        self.assertEqual(len(storage.all()), initial_count)
+
+    def test_delete_none(self):
+        """Test that delete does nothing if obj is None"""
+        initial_count = len(storage.all())
+        storage.delete(None)  # Should not change the objects count
+        self.assertEqual(len(storage.all()), initial_count)
