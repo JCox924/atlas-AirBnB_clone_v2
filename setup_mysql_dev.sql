@@ -10,6 +10,9 @@ GRANT ALL PRIVILEGES ON hbnb_dev_db.* TO 'hbnb_dev'@'localhost';
 -- Revoke all privileges on the database hbnb_dev_db_fake from the hbnb_dev user
 REVOKE ALL PRIVILEGES ON hbnb_dev_db_fake.* FROM 'hbnb_dev'@'localhost';
 
+-- Revoke all privileges on the performance_schema database from the hbnb_dev user
+REVOKE ALL PRIVILEGES ON performance_schema.* FROM 'hbnb_dev'@'localhost';
+
 -- Grant SELECT privilege on the performance_schema database to the hbnb_dev user
 GRANT SELECT ON performance_schema.* TO 'hbnb_dev'@'localhost';
 
