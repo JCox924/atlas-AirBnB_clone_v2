@@ -7,9 +7,6 @@ CREATE USER IF NOT EXISTS 'hbnb_dev'@'localhost' IDENTIFIED BY 'hbnb_dev_pwd';
 -- Grant all privileges on the hbnb_dev_db database to the hbnb_dev user
 GRANT ALL PRIVILEGES ON hbnb_dev_db.* TO 'hbnb_dev'@'localhost';
 
--- Revoke all privileges on the database hbnb_dev_db_fake from the hbnb_dev user
-REVOKE ALL PRIVILEGES ON hbnb_dev_db_fake.* FROM 'hbnb_dev'@'localhost';
-
 -- Revoke all privileges on the performance_schema database from the hbnb_dev user
 REVOKE ALL PRIVILEGES ON performance_schema.* FROM 'hbnb_dev'@'localhost';
 
