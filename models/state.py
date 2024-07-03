@@ -10,14 +10,15 @@ class State(BaseModel, Base):
     """ State class """
     __tablename__ = 'states'
     name = Column(String(128), nullable=False)
-    cities = relationship('City', back_populates='state', cascade='all, delete')
+    cities = relationship('City', back_populates='states', cascade='all, delete')
+    st
 
-    @property
-    def cities(self):
-        """Getter attribute cities that returns the list of City instances"""
-        from models import storage
-        city_list = []
-        for city in storage.all(City).values():
-            if city.state_id == self.id:
-                city_list.append(city)
-        return city_list
+#    @property
+#    def cities(self):
+#      """Getter attribute cities that returns the list of City instances"""
+#       from models import storage
+#       city_list = []
+#        for city in storage.all(City).values():
+#            if city.state_id == self.id:
+#                city_list.append(city)
+#        return city_list
