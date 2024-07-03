@@ -25,6 +25,7 @@ from models.place import Place
 from models.review import Review
 from models.amenity import Amenity
 
+
 class DBStorage:
     """This class manages storage of hbnb models in a SQL database"""
     __engine = None
