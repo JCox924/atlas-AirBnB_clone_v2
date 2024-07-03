@@ -15,7 +15,6 @@ place_amenity = Table('place_amenity', Base.metadata,
 
 class Amenity(BaseModel):
     __tablename__ = 'amenities'
-    __table_args__ = {'extend_existing': True}
 
     name = Column(String(128), nullable=False)
     place_amenities= relationship('Place', secondary=place_amenity, backref='amenities')
