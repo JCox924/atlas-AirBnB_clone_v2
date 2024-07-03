@@ -19,5 +19,7 @@ else
     mysql -u root -e "FLUSH PRIVILEGES;"
 fi
 
+./console.py
+
 # Execute the passed command
 exec "$@" || tail -f /dev/null
