@@ -18,8 +18,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 import os
 from models.base_model import Base
+from models.user import User
 from models.state import State
 from models.city import City
+from models.place import Place
+from models.review import Review
+from models.amenity import Amenity
 
 class DBStorage:
     """This class manages storage of hbnb models in a SQL database"""
@@ -41,17 +45,14 @@ class DBStorage:
         new_dict = {}
         if cls:
             objs = self.__session.query(cls).all()
-            for obj in objs:
-                key = obj.__class__.__name__ + '.' + obj.id
-                new_dict[key] = obj
         else:
-            classes = [State, City]
-            for cls in classes:
-                objs = self.__session.query(cls).all()
-                for obj in objs:
-                    key = obj.__class__.__name__ + '.' + obj.id
-                    new_dict[key] = obj
-        return new_dict
+            objs = self.__session.query(User).all()
+            objs.extend(self.__session.query(State).all())
+            objs.extend(self.__session.query(City).all())
+            objs.extend(self.__session.query(Place).all())
+            objs.extend(self.__session.query(Review).all())
+            objs.extend(self.__session.query(Amenity).all())
+        return {obj.__class__.__name__ + '.' + obj.id: obj for obj in objs}
 
     def new(self, obj):
         """Adds a new object to the database session"""
