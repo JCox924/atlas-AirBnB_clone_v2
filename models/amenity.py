@@ -18,4 +18,4 @@ class Amenity(BaseModel):
     __table_args__ = {'extend_existing': True}
 
     name = Column(String(128), nullable=False)
-    place_amenities= relationship('Place' secondary=place_amenity, backref='amenities')
+    place_amenities= relationship('Place', secondary=place_amenity, backref='amenities')
