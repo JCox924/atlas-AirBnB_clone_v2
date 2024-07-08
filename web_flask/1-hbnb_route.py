@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-
+'''
+Starts Flask web app with Flask routes
+'''
 from flask import Flask
 
 app = Flask(__name__)
