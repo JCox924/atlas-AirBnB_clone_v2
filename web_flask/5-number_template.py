@@ -34,7 +34,7 @@ def python(text='is cool'):
 def number(n):
     app.logger.info(f'Number {n}')
     return f"{n} is a number"
-@app.route('/number/<int:n>', strict_slashes=False)
+@app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     return render_template('5-number.html', number=n)
 
