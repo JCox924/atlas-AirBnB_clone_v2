@@ -37,10 +37,7 @@ ENV HBNB_MYSQL_HOST=localhost
 ENV HBNB_MYSQL_DB=hbnb_dev_db
 ENV HBNB_TYPE_STORAGE=db
 
-# Add entrypoint script to initialize MySQL and run the application
-COPY entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+
 
 # Set the default command to keep the container running
 CMD ["tail", "-f", "/dev/null"]
