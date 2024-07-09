@@ -20,7 +20,7 @@ def states_list():
 @app.teardown_appcontext
 def teardown_db(exception):
     """
-    Remove the current SQLAlchemy Session after each request.
+    Remove the current SQLAlchemy Session after each request.exit
     """
     storage.close()
 
