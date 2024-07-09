@@ -28,7 +28,8 @@ fi
 export PYTHONPATH=/usr/src/app
 
 echo "launching file"
-python3 web_flask/7-states_list.py
+cd web_flask/
+python3 9-states.py
 
 # Execute the passed command
 exec "$@" || tail -f /dev/null
