@@ -22,14 +22,14 @@ fi
 
 if [ -z "$(mysql -u root -p${HBNB_MYSQL_PWD} -e 'SHOW TABLES;' ${HBNB_MYSQL_DB})" ]; then
     echo "Importing database dump..."
-    mysql -u root -p${HBNB_MYSQL_PWD} ${HBNB_MYSQL_DB} < /docker-entrypoint-initdb.d/100-hbnb.sql
+    mysql -u root -p${HBNB_MYSQL_PWD} ${HBNB_MYSQL_DB} < /docker-entrypoint-initdb.d/10-hbnb.sql
 fi
 
 export PYTHONPATH=/usr/src/app
 
 echo "launching file"
 cd web_flask/
-python3 9-states.py
+python3 10-hbnb_filters.py
 
 # Execute the passed command
 exec "$@" || tail -f /dev/null

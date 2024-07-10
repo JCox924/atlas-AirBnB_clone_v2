@@ -25,7 +25,7 @@ WORKDIR /usr/src/app
 # Copy application
 COPY . .
 
-COPY 100-hbnb.sql /docker-entrypoint-initdb.d/
+COPY 10-hbnb.sql /docker-entrypoint-initdb.d/
 
 # Expose the MySQL port
 EXPOSE 3306
